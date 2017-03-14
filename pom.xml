@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>it.cnr.ilc.lc</groupId>
+    <artifactId>OmegaProject</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.path.resources>${basedir}/src/main/resources</project.path.resources>
+        <project.omegapersistence.path.resource>../OmegaPersistence/src/main/resources</project.omegapersistence.path.resource>
+        <project.omegaentityhibernatesearch.path.resource>../OmegaEntityHibernateSearch/src/main/resources</project.omegaentityhibernatesearch.path.resource>
+        <project.omegacore.path.resource>../OmegaCore/src/main/resources</project.omegacore.path.resource>
+        <project.omegatest.path.resource>../OmegaTest/src/main/resources</project.omegatest.path.resource>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.8.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.8.1</version>
+        </dependency>
+
+    </dependencies>
+
+    
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>           
+            </plugins>
+        </pluginManagement>   
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <executions>
+                    <!--                    <execution>
+                        <id>copypersistence-xml-into-omegapersistence</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.omegapersistence.path.resource}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.path.resources}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>                    -->
+                    <execution>
+                        <id>copypersistence-xml-into-omegaentityhibernatesearch</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.omegaentityhibernatesearch.path.resource}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.path.resources}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>                    
+                    <!--                    <execution>
+                        <id>copypersistence-xml-into-omegacore</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.omegacore.path.resource}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.path.resources}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>-->
+                    <!--                    <execution>
+                        <id>copypersistence-xml-into-omegatest</id>
+                        <phase>process-test-sources</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${project.omegatest.path.resource}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.path.resources}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>-->
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.6.1</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>${project.omegaentityhibernatesearch.path.resource}/META-INF</directory>
+                            <includes>
+                                <include>persistence.xml</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                        <fileset>
+                            <directory>${project.omegapersistence.path.resource}/META-INF</directory>
+                            <includes>
+                                <include>persistence.xml</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+        
+    <modules>
+        <module>../OmegaPersistence</module>
+        <module>../OmegaEntityHibernateSearch</module>
+        <module>../OmegaCore</module>
+        <module>../OmegaText</module>
+        <module>../OmegaRest</module>
+        <module>../OmegaRestClient</module>
+        <module>../OmegaException</module>
+        <module>../OmegaAnnotation</module>
+        <module>../OmegaTest</module>
+    </modules>
+</project>
