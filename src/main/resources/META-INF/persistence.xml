@@ -17,6 +17,19 @@
             <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
             <property name="hibernate.search.analyzer" value="org.apache.lucene.analysis.core.WhitespaceAnalyzer"/>
             <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <!-- C3P0 -->
+            <property name="hibernate.connection.provider_class" value="org.hibernate.connection.C3P0ConnectionProvider" />
+            <property name="hibernate.c3p0.min_size" value="5" />
+            <property name="hibernate.c3p0.max_size" value="50" />
+            <property name="hibernate.c3p0.timeout" value="300" />
+            <property name="hibernate.c3p0.max_statements" value="5" />
+            <property name="hibernate.c3p0.idle_test_period" value="14400" />
+            <property name="hibernate.c3p0.preferredTestQuery" value="SELECT 1"/>
+            <property name="hibernate.c3p0.acquire_increment" value="2" />
+            <property name="hibernate.connection.autoReconnect" value="true" />
+            <property name="hibernate.connection.autoReconnectForPools" value="true" />
+            <property name="hibernate.connection.is-connection-validation-required" value="true" />
+            <!-- C3P0 end-->
         </properties>
     </persistence-unit>
     <persistence-unit name="OmegaPUNoLucene" transaction-type="RESOURCE_LOCAL">
